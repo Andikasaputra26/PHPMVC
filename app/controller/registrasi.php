@@ -3,7 +3,7 @@ require '../model/User.php';
 
 require '../config/koneksi.php';
 
-$userModel = new User($conn);
+$userModel = new User($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];

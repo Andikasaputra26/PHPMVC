@@ -3,7 +3,7 @@ session_start();
 require '../model/User.php';
 require '../config/koneksi.php';
 
-$userModel = new User($conn);
+$userModel = new User($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && $userModel->verifyPassword($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
-        header("Location: ../views/dashboard-view.php");
+        header("Location: ../views/index.php");
         exit();
     } else {
         echo "Email atau password salah!";

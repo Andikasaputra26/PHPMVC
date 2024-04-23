@@ -1,14 +1,15 @@
 <?php
 
-$host = 'localhost'; 
-$dbname = 'tes_oshs'; 
-$username = 'root'; 
-$password = ''; 
+$host = 'localhost';
+$dbname = 'tes_oshs';
+$username = 'root';
+$password = '';
 
-
-$koneksi = mysqli_connect($host, $username, $password, $dbname);
-
-if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+try {
+    $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Koneksi database gagal: " . $e->getMessage();
+    die();
 }
 ?>
